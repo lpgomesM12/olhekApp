@@ -1,0 +1,20 @@
+<ion-view view-title="Categorias">
+    <ion-content>
+        <div class="list">            
+           <a href="#/app/produtos/9" class="item">
+                Todas as categorias
+            </a> 
+
+            <div ng-repeat="categoria in categorias">
+
+	            <a ng-if="categoria.filhos" href="#/app/listaCategoria/{{categoria.id}}" class="item">
+	                 {{categoria.nome}}
+	            </a>
+                
+	            <a ng-if="!categoria.filhos" href="#/app/produtos/{{categoria.id}}" class="item">
+	                 {{categoria.nome}}
+	            </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

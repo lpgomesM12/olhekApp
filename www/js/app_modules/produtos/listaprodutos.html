@@ -1,0 +1,30 @@
+<ion-view view-title="">
+
+ <div class="bar bar-subheader bar-light" text-align="center">
+     <div align="center">
+        <a class="button button-clear button-positive" href="#/app/listaCategoria/9">
+           Categorias
+          <i class="ion-search"></i>
+         </a>
+      </div>
+ </div>
+
+  <ion-content class="has-subheader">
+    <div class="list">
+        <a class="item item-thumbnail-left" href="#/app/showproduto/{{produto.id}}" ng-repeat="produto in produtos">
+          <img style="width:100px,height:100px" src="http://107.170.54.89{{produto.fotos}}">
+          <h2>{{produto.nome}}</h2>
+          <p> Atacado:<strong style="color:#0c60ee">{{produto.precovarejo}}</strong> | Varejo:<strong style="color:#0c60ee">{{produto.precoatacado}}</strong></p>
+          <p><small>{{produto.titulo}}</small></p>
+        </a>            
+    </div>
+
+    <ion-infinite-scroll
+            ng-if="canWeLoadMoreContent()"
+            on-infinite="populateList()" 
+            distance="1%">
+    </ion-infinite-scroll>  
+
+  </ion-content>
+</ion-view>
+

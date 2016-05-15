@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ionicframework.olhekapp550097" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Olhek</name>
+    <description>
+        Uma aplicação para centro comercias.
+    </description>
+    <author email="you@example.com" href="http://example.com.com/">
+      Leandro Pereira Gomes
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="FadeSplashScreenDuration" value="1000" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="BackupWebStorage" value="none" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <preference name="xwalkVersion" value="xwalk_core_library_beta:18+" />
+    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+    <preference name="xwalkMode" value="embedded" />
+    <preference name="xwalkMultipleApk" value="true" />
+
+<platform name="android">
+    <preference name="SplashScreen" value="screen" />
+    <splash density="land-hdpi" src="res/screen/android/drawable-land-hdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/drawable-land-ldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/drawable-land-mdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/drawable-land-xhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/drawable-port-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/drawable-port-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/drawable-port-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/drawable-port-xhdpi.png" />
+    <icon density="ldpi" src="res/icon/android/drawable-ldpi.png" />
+    <icon density="mdpi" src="res/icon/android/drawable-mdpi.png" />
+    <icon density="hdpi" src="res/icon/android/drawable-hdpi.png" />
+    <icon density="xhdpi" src="res/icon/android/drawable-xhdpi.png" />
+</platform>
+
+<icon src="res/icon/icon.png" />
+
+</widget>
