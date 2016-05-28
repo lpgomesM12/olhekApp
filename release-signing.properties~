@@ -1,0 +1,4 @@
+storeFile=olhek_app.keystore
+storePassword=olhekapp
+keyAlias=olhek_app
+keyPassword=olhekapp

@@ -1,0 +1,39 @@
+<ion-view view-title="Cadastrar produto">
+  <ion-content>
+<form ng-submit="logar()">
+  <div class="item item-button-right" ng-click="modal.show()">
+    {{produto.nomeCategoria}}
+    <button class="button button-positive" ng-click="modal.show()">
+      <i class="icon ion-ios-search"></i>
+    </button>
+  </div>
+
+  <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Nome produto">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Titulo anúncio">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Preço varejo">
+      </label>
+       <label class="item item-input">
+        <input type="text" placeholder="Preço atacado">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Quantidade atacado">
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Descrição detalhada"></textarea>
+      </label>
+  </div>
+
+  <a class="button button-block icon-right ion-chevron-right button-positive" href="#/app/fotoproduto">
+    Cadastro de fotos
+  </a>
+
+
+<form>
+</ion-content>
+</ion-view>

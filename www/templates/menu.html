@@ -14,15 +14,24 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable" align-title="center">
-      <h1 class="title">Olhek</h1>
+    <ion-header-bar class="bar-stable"  align-title="center">
+      <h1 class="title" style="color:#fff">MV</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="custom">
       <ion-list>
-       
-      <ion-item menu-close style="background-color:#c2d8fc" href="#/app/listaCategoria/9">
+      <ion-item menu-close class="item item-icon-left" href="#/app/listaCategoria/9">
+       <i class="icon ion-drag"></i>
             Categorias
       </ion-item>
+<!--       <ion-item menu-close class="item item-icon-left" href="#/app/cadastroproduto">
+      <i class="icon ion-plus"></i>
+            Novo Produto
+      </ion-item>
+      <ion-item menu-close class="item item-icon-left" href="#/app/login">
+      <i class="icon ion-person"></i>
+            Login
+      </ion-item> -->
+      
     <!-- <ion-item menu-close ng-click="login()">
       Login
     </ion-item>
@@ -44,7 +53,38 @@
 <style type="text/css">
   
   .bar.bar-positive {
-  background-color: #5682a3;
+   background-color: #5682a3;
+   border: none;
+
 }
+
+.bar.bar-stable  {
+  background-color: #3c5a71;
+  border:none;
+}
+
+.custom {
+  background-color: #3c5a71 !important; /* This sets the background color*/
+ }
+
+/*Set the background to transparent for ion-item*/
+.custom .item {
+  background-color: transparent;
+  border:none;   /*Removes all borders*/
+  border-top: 1px solid;   /*Top Border for each menu item*/
+  border-bottom:2px solid;   /*Bottom border for each menu item*/
+  border-color: #666;   /*Sets colors for top and bottom border*/
+  color: white;    /*Text color for each item*/
+}
+ 
+/*Changes the border for the last item*/
+.custom .item:last-child {
+  border-bottom: 1px solid #666;
+}
+ 
+.custom .item-complex .item-content, .dark .item-radio .item-content {
+  background-color: transparent;
+}
+
 </style>
 

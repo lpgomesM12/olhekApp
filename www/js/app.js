@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','produto'])
+angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','produto','user','ngFileUpload'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -65,11 +65,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','p
         }
       }
     })
+    
+    .state('app.login', {
+      url: "/login",
+      views: {
+        'menuContent': {
+         templateUrl: "js/app_modules/user/login.html",
+          controller: 'logarCtrl'
+        }
+      }
+    })
 
+    .state('app.cadastroproduto', {
+      url: "/cadastroproduto",
+      views: {
+        'menuContent': {
+         templateUrl: "js/app_modules/produtos/cadastrarproduto.html",
+          controller: 'CadastraProdutoCtrl'
+        }
+      }
+    })
 
-
-
-
+    .state('app.fotoproduto', {
+      url: "/fotoproduto",
+      views: {
+        'menuContent': {
+         templateUrl: "js/app_modules/produtos/fotoproduto.html",
+          controller: 'FotoProdutoCtrl'
+        }
+      }
+    })
 
   //daqui para baixo rotas gerada pelo ionic
 

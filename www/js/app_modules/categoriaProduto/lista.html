@@ -5,7 +5,7 @@
                 Todas as categorias
             </a> 
 
-            <div ng-repeat="categoria in categorias">
+            <div collection-repeat="categoria in categorias">
 
 	            <a ng-if="categoria.filhos" href="#/app/listaCategoria/{{categoria.id}}" class="item">
 	                 {{categoria.nome}}

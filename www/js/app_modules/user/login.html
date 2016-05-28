@@ -1,0 +1,30 @@
+<ion-view view-title="Login">
+  <ion-content>
+    <form ng-if="!logado" ng-submit="logar()">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text"  placeholder="Email" ng-model="usuario.email">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="usuario.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Entrar</button>
+        </label>
+      </div>
+    </form>
+
+<div class="card" ng-if="logado">
+  <div class="item item-divider">
+  </div>
+  <div class="item item-text-wrap">
+    {{nomeUsuario}}
+  </div>
+  <div class="item item-divider">
+    <button class="button button-block button-assertive" ng-click="deslogar()">Sair</button>
+  </div>
+</div>
+
+
+  </ion-content>
+</ion-view>

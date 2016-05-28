@@ -3,7 +3,7 @@
  <div class="bar bar-subheader bar-light" text-align="center">
      <div align="center">
         <a class="button button-clear button-positive" href="#/app/listaCategoria/9">
-           Categorias
+              <strong style="color:#5682a3">Categorias</strong>
           <i class="ion-search"></i>
          </a>
       </div>
@@ -11,13 +11,17 @@
 
   <ion-content class="has-subheader">
     <div class="list">
-        <a class="item item-thumbnail-left" href="#/app/showproduto/{{produto.id}}" ng-repeat="produto in produtos">
+        <a class="item item-thumbnail-left" href="#/app/showproduto/{{produto.id}}" collection-repeat="produto in produtos">
           <img style="width:100px,height:100px" src="http://107.170.54.89{{produto.fotos}}">
           <h2>{{produto.nome}}</h2>
-          <p> Atacado:<strong style="color:#0c60ee">{{produto.precovarejo}}</strong> | Varejo:<strong style="color:#0c60ee">{{produto.precoatacado}}</strong></p>
+          <p> Atacado:<strong style="color:#F70">{{produto.precovarejo}}</strong> | Varejo:<strong style="color:#F70">{{produto.precoatacado}}</strong></p>
           <p><small>{{produto.titulo}}</small></p>
         </a>            
     </div>
+     
+    <button ng-if="listavazia" ng-click="populateList()" class="button button-block button-stable">
+    Pesquisar novamente...
+   </button>
 
     <ion-infinite-scroll
             ng-if="canWeLoadMoreContent()"
@@ -26,5 +30,17 @@
     </ion-infinite-scroll>  
 
   </ion-content>
+
 </ion-view>
 
+
+
+<style type="text/css">
+  
+  .bar.bar-subheader {
+   background-color: #dee6ef;
+} 
+ .ion-search{
+  color:#5682a3
+ }
+</style>

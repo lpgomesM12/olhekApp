@@ -3,13 +3,12 @@
    <div class="list card">
 
     <div class="item item-body">
-
       <ion-slide-box on-slide-changed="slideChanged(index)" auto-play="true" does-continue="true">
       <ion-slide ng-repeat="foto in produto.fotos" >
-        <div class="box blue">
+
         <div align="center"> <img class="image" src="http://107.170.54.89{{foto}}">
        </div>
-        </div>
+
       </ion-slide>
      </ion-slide-box>
 
@@ -17,9 +16,8 @@
       <p>
         {{produto.descricao}}
       </p>
- 
-         <h3>Varejo <strong style="color:#0c60ee">{{produto.precovarejo}}</strong></h3>
-         <h3>Atacado <strong style="color:#0c60ee">{{produto.precoatacado}}</strong></h3>     
+         <h3>Varejo <strong style="color:#F70">{{produto.precovarejo}}</strong></h3>
+         <h3>Atacado <strong style="color:#F70">{{produto.precoatacado}}</strong></h3>     
       <p>
         <!--<a href="#" class="subdued">1 Curtidas</a>-->
         <!--<a href="#" class="subdued">5 Comentarios</a>-->
@@ -27,15 +25,56 @@
     </div>       
  </div>
 
- <div class="card">
+<!--  <div class="card">
   <div class="item item-text-wrap">
-    Veja todos os produtos do anunciante: <strong style="color:red">{{produto.nomeempresa}}</strong>
+     <strong style="color:red">{{produto.nomeempresa}}</strong>
+     
     <a href="#/app/showprodutosempresa/{{produto.empresa_id}}" class="button button-block button-positive">
       Click aqui!
     </a>
   </div>
- </div>
+ </div> -->
+
+ <div class="list card">
+  <a href="#/app/showprodutosempresa/{{produto.empresa_id}}" class="item nomeempresa">
+  <div align="center">
+    {{produto.nomeempresa}}
+    </div>
+  </a>
+
+  <a class="item item-icon-left" ng-click="showAlert(produto.endereco)">
+    <i class="icon ion-home"></i>
+    <font size="1.9">{{produto.endereco}}</font>
+  </a>
+  <a class="item item-icon-left">
+    <i class="icon ion-ios-telephone"></i>
+    <label ng-repeat="telefone in produto.telefones">{{telefone}}|</label>
+  </a>
+
+  <a href="#/app/showprodutosempresa/{{produto.empresa_id}}" class="item maisprodutos">
+  <div align="center">
+    Mais produtos
+    </div>
+
+  </a>
+
+</div>
 
   </ion-content>
 </ion-view>
+
+
+
+<style type="text/css">
+  
+  .nomeempresa {
+   background-color: #ffc99a;
+}
+
+ .maisprodutos {
+  background-color: #88a5c5;
+
+ }
+
+</style>
 

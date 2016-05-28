@@ -7,6 +7,7 @@ angular.module('categoriaProduto')
 		
          return $q(function(resolve, reject) {
 		    $http.get('http://107.170.54.89/buscacategoria?father_id='+father_id)
+		    // $http.get('http://localhost:3000/buscacategoria?father_id='+father_id)
 			  .success(function(categorias){
 			  	resolve(categorias);
 			  })

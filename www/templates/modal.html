@@ -1,0 +1,24 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title"></h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Fechar</button>
+     </ion-header-bar>
+        <ion-content class="padding">
+         <div class="list">            
+
+           <div align="center">
+            <a ng-click="buscaCategoria(9)" class="item item-positive">
+                   Categorias
+            </a>
+            </div>
+            <div ng-repeat="categoria in categorias">
+              <a ng-if="categoria.filhos" ng-click="buscaCategoria(categoria.id)" class="item">
+                   {{categoria.nome}}
+              </a>                
+              <a ng-if="!categoria.filhos" ng-click="setaCategoria(categoria.id,categoria.nome)" class="item">
+                   {{categoria.nome}}
+              </a>
+            </div>
+         </div>
+        </ion-content>
+</ion-modal-view>

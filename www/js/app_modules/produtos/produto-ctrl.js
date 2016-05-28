@@ -26,11 +26,19 @@ angular.module('produto', [])
 		 if (dados.length > 0){
 		 	 $scope.page++;
 		    }				 	
-			 			
+			
+          if ($scope.produtos.length > 0){
+          	 $scope.listavazia = false;
+          }else{
+          	 $scope.listavazia = true;
+          }
+
 		    })
 		   .catch(function(erro) {
 				console.log(erro);
 	  });
+
+
 
   }
 
@@ -40,8 +48,8 @@ angular.module('produto', [])
   } 
 
 }])
-.controller('ProdutoShowCtrl', ['$scope','buscaProduto','$stateParams', function ($scope,buscaProduto,$stateParams) {
-	
+.controller('ProdutoShowCtrl', ['$scope','buscaProduto','$stateParams','$ionicPopup', function ($scope,buscaProduto,$stateParams, $ionicPopup) {
+
 	 buscaProduto.busca($stateParams.produtoId)
 		 .then(function(dados) {
 			$scope.produto = dados;
@@ -49,6 +57,20 @@ angular.module('produto', [])
 		   .catch(function(erro) {
 				console.log(erro);
 	  });
+
+   $scope.showAlert = function(endereco) { 
+
+      var alertPopup = $ionicPopup.alert({
+         title: 'Endereço',
+         template: endereco
+      });
+
+      alertPopup.then(function(res) {
+         // Custom functionality....
+      });
+   };
+
+
 
 }])
 .controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams', function ($scope,buscaProdutosEmpresa,$stateParams) {
@@ -61,4 +83,54 @@ angular.module('produto', [])
 				console.log(erro);
 	  });
 
+}])
+.controller('CadastraProdutoCtrl', ['$scope','$stateParams','buscaCategoria','$ionicModal', function ($scope,$stateParams, buscaCategoria, $ionicModal) {	
+
+  $scope.produto = {};
+  $scope.produto.nomeCategoria = "Selecione uma categoria";
+
+  $ionicModal.fromTemplateUrl('templates/modal.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+       $scope.buscaCategoria(9);
+    });
+
+  $scope.buscaCategoria = function(id){
+     buscaCategoria.busca(id)
+		 .then(function(dados) {
+			$scope.categorias = dados;					
+		    })
+		   .catch(function(erro) {
+				console.log(erro);
+	   });
+    }
+  
+  $scope.setaCategoria = function(id, nome){
+   
+   $scope.produto.idCategoria = id;
+   $scope.produto.nomeCategoria = nome; 
+   $scope.modal.hide();
+  }
+
+   $scope.createContact = function(u) {        
+     $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
+     $scope.modal.hide();
+   };
+
+}])
+.controller('FotoProdutoCtrl', ['$scope','Upload', function ($scope,Upload) {
+  $scope.upload = function(file){
+    Upload.upload({
+      url: 'http://localhost:3000/salvarfoto',
+      method: 'GET',
+      fields: { 
+        'fotoproduto[produto_id]': 2
+      },
+      file: file,
+      fileFormDataName: 'fotoproduto[image]'
+    });
+  };
+
 }]);
+
