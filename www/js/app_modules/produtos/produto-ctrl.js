@@ -22,7 +22,6 @@ angular.module('produto', [])
 		    }
 
 			$scope.$broadcast('scroll.infiniteScrollComplete');
-			//console.log($scope.page);
 		 if (dados.length > 0){
 		 	 $scope.page++;
 		    }				 	
@@ -69,8 +68,6 @@ angular.module('produto', [])
          // Custom functionality....
       });
    };
-
-
 
 }])
 .controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams', function ($scope,buscaProdutosEmpresa,$stateParams) {
@@ -119,18 +116,90 @@ angular.module('produto', [])
    };
 
 }])
-.controller('FotoProdutoCtrl', ['$scope','Upload', function ($scope,Upload) {
+.controller('FotoProdutoCtrl', ['$scope','Upload','servicoFotosProduto','$ionicPopup','$ionicLoading', function ($scope,Upload,servicoFotosProduto,$ionicPopup,$ionicLoading) {
+ 
+
+  $scope.showConfirm = function(id) {  
+    $scope.idFoto = id;
+
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Deletar',
+       template: 'Deseja realmente excluir esta foto?'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         $scope.delete($scope.idFoto);
+         $scope.idFoto = 0;
+       } else {
+         $scope.idFoto = 0;
+       }
+     });
+   };
+
+$scope.BuscaFotoProduto = function (){
+
+    servicoFotosProduto.busca(10)
+       .then(function(dados) {
+        $scope.fotosproduto = dados;
+          })
+         .catch(function(erro) {
+          console.log(erro);
+    });      
+}
+ 
+ $scope.onChange = function (file){
+    if(file == undefined) return;
+    $scope.fileExt = file.name.split(".").pop();
+
+    if($scope.fileExt.match(/^(jpg|jpeg|gif|png)$/))
+    {
+        $scope.upload(file) 
+    }
+ }
+
   $scope.upload = function(file){
-    Upload.upload({
-      url: 'http://localhost:3000/salvarfoto',
-      method: 'GET',
-      fields: { 
-        'fotoproduto[produto_id]': 2
-      },
-      file: file,
-      fileFormDataName: 'fotoproduto[image]'
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
     });
-  };
+
+      Upload.upload({
+        // url: 'http://localhost:3000/fotoprodutos',
+        url: 'http://107.170.54.89/fotoprodutos',
+        method: 'POST',
+        fields: { 
+         'fotoproduto[produto_id]': 18
+        },
+        file: file,
+        fileFormDataName: 'fotoproduto[image]'
+      }).then(function (resp) {
+        console.log('Success uploaded. Response');
+        $ionicLoading.hide();
+        $scope.BuscaFotoProduto();
+        }, function (evt) {
+         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+         console.log('progress: ' + progressPercentage + '% ' + "foto");
+        });
+    };
+
+
+  $scope.delete = function(id){
+      servicoFotosProduto.delete(id)
+         .then(function(dados) {
+            $scope.BuscaFotoProduto();
+           console.log("Foto excluida com sucesso.")
+            })
+           .catch(function(erro) {
+            console.log(erro);
+      });     
+    };
+
+  $scope.BuscaFotoProduto();
 
 }]);
 

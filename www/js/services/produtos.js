@@ -9,7 +9,6 @@ angular.module('produto')
 			  .success(function(produtos){
 			  	items = produtos;
 			  	resolve(items);
-
 			  })
 			  .error(function(erro){
 			  	reject({erro});
@@ -61,4 +60,43 @@ angular.module('produto')
 
       return service;
       
+   })
+  .factory('servicoFotosProduto',function($http,$q){
+  
+       var service = {};
+        service.busca = function(id){		
+         return $q(function(resolve, reject) {
+		         $http.get('http://107.170.54.89/buscaFotoProduto?produto_id='+id)
+		    //   $http.get('http://localhost:3000/buscaFotoProduto?produto_id='+id)
+			  .success(function(fotoproduto){
+			  	resolve(fotoproduto);
+			  })
+			  .error(function(erro){
+			  	reject({erro});
+			  });
+          });
+       };
+
+        service.delete = function(id){		
+         return $q(function(resolve, reject) {
+		     $http.get('http://107.170.54.89/deletaFotoProduto?id='+id)
+		    //   $http.get('http://localhost:3000/deletaFotoProduto?id='+id)
+			  .success(function(fotoproduto){
+			  	resolve(fotoproduto);
+			  })
+			  .error(function(erro){
+			  	reject({erro});
+			  });
+          });
+       };
+
+
+   return service;
+      
    });
+
+
+
+
+
+
