@@ -1,10 +1,14 @@
 angular.module('user', [])
-.controller('logarCtrl', function ($scope,logar,$stateParams,$location) {
+.controller('logarCtrl', function ($scope,logar,$stateParams,$location,$rootScope) {
+
+
 	
 $scope.usuario = {};
 
-$scope.logado = sessionStorage.userLogado;
-$scope.nomeUsuario = sessionStorage.nome;
+ console.log(sessionStorage.userLogado); 
+ console.log(sessionStorage.nome); 
+
+//$scope.nomeUsuario = sessionStorage.nome;
 
 $scope.logar = function() {
        logar.login($scope.usuario)
@@ -22,8 +26,9 @@ $scope.logar = function() {
             sessionStorage.setItem('userIdEmpresa',dados.empresa_id);
             sessionStorage.setItem('userLogado',true);
             
-            $scope.logado = true;
-            $scope.nomeUsuario = dados.nome;
+            $rootScope.userLogado = true;
+            $rootScope.nomeUsuario = dados.nome;
+            $rootScope.userIdEmpresa = dados.empresa_id
 
             $location.path('/app/produtos/9');
 

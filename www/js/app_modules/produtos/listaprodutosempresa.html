@@ -1,0 +1,19 @@
+  <ion-view view-title="Lista Produtos">
+   <ion-content>
+  <form ng-submit="upload(file)">
+
+   <a class="button button-positive button-block icon-righ ion-plus-circled"  href="#/app/cadastroproduto"> 
+      Cadastrar novo produto
+    </a> 
+  </form>
+    <div class="list">
+        <a class="item item-thumbnail-left" collection-repeat="produto in produtos">
+           <img  ng-repeat="foto in produto.fotos|limitTo:1" style="width:100px,height:100px" src="http://107.170.54.89{{foto}}">
+          <h2>{{produto.nome}}</h2>
+         <button class="button button-small button-balanced icon-left ion-edit" ng-click="showAlert()">Editar</button>
+           <button class="button button-small button-positive icon-left ion-eye" ng-click="showAlert()">Exibir</button>
+            <button class="button button-small button-assertive icon-left ion-trash-a" ng-click="showAlert()">Deletar</button>        
+        </a>
+    </div>
+  </ion-content>
+</ion-view>

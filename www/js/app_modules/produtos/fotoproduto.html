@@ -1,11 +1,14 @@
   <ion-view view-title="Cadastrar produto">
    <ion-content>
   <form ng-submit="upload(file)">
-    <button type="file" ngf-change="onChange(file)" ngf-select ng-model="file" name="teste" class="button button-stable button-block icon-righ ion-camera"> Selecione ou tire uma foto</button>  
-   </form>
+
+   <button type="file" ngf-change="onChange(file)"  ngf-select ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-capture="'camera'" ng-model="file" name="file" class="button button-stable button-block icon-righ ion-camera"> Selecione ou tire uma foto
+    </button> 
+  </form>
     <div class="list">
         <a class="item item-thumbnail-left" collection-repeat="foto in fotosproduto">
-          <img style="width:100px,height:100px" src="http://localhost:3000{{foto.imagem}}">
+          <img style="width:100px,height:100px" src="http://107.170.54.89{{foto.imagem}}">
           <button class="button button-assertive icon-left ion-trash-a" ng-click="showConfirm(foto.id)">Excluir</button>
         </a>            
     </div>

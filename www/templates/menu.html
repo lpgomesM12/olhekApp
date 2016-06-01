@@ -23,7 +23,7 @@
        <i class="icon ion-drag"></i>
             Categorias
       </ion-item>
-     <ion-item menu-close class="item item-icon-left" href="#/app/cadastroproduto">
+     <ion-item menu-close class="item item-icon-left" ng-show="userLogado" href="#/app/listaprodutosempresa/{{userIdEmpresa}}">
       <i class="icon ion-plus"></i>
             Novo Produto
       </ion-item>

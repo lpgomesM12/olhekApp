@@ -70,7 +70,7 @@ angular.module('produto', [])
    };
 
 }])
-.controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams', function ($scope,buscaProdutosEmpresa,$stateParams) {
+.controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams','$ionicPopup', function ($scope,buscaProdutosEmpresa,$stateParams,$ionicPopup) {
 	
 	 buscaProdutosEmpresa.busca($stateParams.empresaId)
 		 .then(function(dados) {
@@ -79,6 +79,18 @@ angular.module('produto', [])
 		   .catch(function(erro) {
 				console.log(erro);
 	  });
+
+
+  $scope.showAlert = function() { 
+      var alertPopup = $ionicPopup.alert({
+         title: 'Aviso',
+         template: 'Em desenvolvimento'
+      });
+
+      alertPopup.then(function(res) {
+         // Custom functionality....
+      });
+   };
 
 }])
 .controller('CadastraProdutoCtrl', ['$scope','$stateParams','buscaCategoria','$ionicModal', function ($scope,$stateParams, buscaCategoria, $ionicModal) {	
@@ -118,7 +130,6 @@ angular.module('produto', [])
 }])
 .controller('FotoProdutoCtrl', ['$scope','Upload','servicoFotosProduto','$ionicPopup','$ionicLoading', function ($scope,Upload,servicoFotosProduto,$ionicPopup,$ionicLoading) {
  
-
   $scope.showConfirm = function(id) {  
     $scope.idFoto = id;
 
@@ -139,7 +150,7 @@ angular.module('produto', [])
 
 $scope.BuscaFotoProduto = function (){
 
-    servicoFotosProduto.busca(10)
+    servicoFotosProduto.busca(18)
        .then(function(dados) {
         $scope.fotosproduto = dados;
           })

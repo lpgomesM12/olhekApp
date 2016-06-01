@@ -1,6 +1,6 @@
 <ion-view view-title="Login">
   <ion-content>
-    <form ng-if="!logado" ng-submit="logar()">
+    <form ng-if="!userLogado" ng-submit="logar()">
       <div class="list">
         <label class="item item-input">
           <input type="text"  placeholder="Email" ng-model="usuario.email">
@@ -14,7 +14,7 @@
       </div>
     </form>
 
-<div class="card" ng-if="logado">
+<div class="card" ng-if="userLogado">
   <div class="item item-divider">
   </div>
   <div class="item item-text-wrap">

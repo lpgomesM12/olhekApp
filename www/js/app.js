@@ -96,6 +96,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','p
       }
     })
 
+    .state('app.listaprodutosempresa', {
+      url: "/listaprodutosempresa/:empresaId",
+      views: {
+        'menuContent': {
+         templateUrl: "js/app_modules/produtos/listaprodutosempresa.html",
+          controller: 'ProdutoShowEmpresaCtrl'
+        }
+      }
+    })
+
   //daqui para baixo rotas gerada pelo ionic
 
   .state('app.search', {
