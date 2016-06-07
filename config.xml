@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.leandro.melhorvitrine" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.leandro.melhorvitrine" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Melhor Vitrine</name>
     <description>
         Uma aplicação para centros comercias.
     </description>
     <author email="grupolpgomes@gmail.com" href="http://melhorvitrine.com.br">
-      Leandro Pereira Gomes
-    </author>
+      Leandro Pereira                 <Gomes />
+</author>
     <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
@@ -35,7 +35,7 @@
         <icon density="xhdpi" src="res/icon/android/drawable-xhdpi.png" />
     </platform>
     <icon src="res/icon/icon.png" />
-    <preference name="xwalkVersion" value="xwalk_core_library_beta:18+" />
+    <preference name="xwalkVersion" value="18+" />
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />

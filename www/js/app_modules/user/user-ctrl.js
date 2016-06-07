@@ -27,8 +27,10 @@ $scope.logar = function() {
             sessionStorage.setItem('userLogado',true);
             
             $rootScope.userLogado = true;
+            $rootScope.userId = dados.id;
             $rootScope.nomeUsuario = dados.nome;
             $rootScope.userIdEmpresa = dados.empresa_id
+
 
             $location.path('/app/produtos/9');
 

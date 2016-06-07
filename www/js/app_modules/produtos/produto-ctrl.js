@@ -8,6 +8,7 @@ angular.module('produto', [])
      if (!$scope.page){
           $scope.page = 1;
     }
+
 	buscaProdutos.busca($stateParams.categoriaId,$scope.page)
 		 .then(function(dados) {					
 			$scope.produtos = $scope.produtos.concat(dados);
@@ -70,16 +71,17 @@ angular.module('produto', [])
    };
 
 }])
-.controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams','$ionicPopup', function ($scope,buscaProdutosEmpresa,$stateParams,$ionicPopup) {
+.controller('ProdutoShowEmpresaCtrl', ['$scope','buscaProdutosEmpresa','$stateParams','$ionicPopup','$rootScope', function ($scope,buscaProdutosEmpresa,$stateParams,$ionicPopup,$rootScope) {
 	
-	 buscaProdutosEmpresa.busca($stateParams.empresaId)
+  $scope.buscaProdutos = function() {
+   buscaProdutosEmpresa.busca($stateParams.empresaId)
 		 .then(function(dados) {
 			$scope.produtos = dados;
 		    })
 		   .catch(function(erro) {
 				console.log(erro);
 	  });
-
+};
 
   $scope.showAlert = function() { 
       var alertPopup = $ionicPopup.alert({
@@ -92,8 +94,23 @@ angular.module('produto', [])
       });
    };
 
+$scope.buscaProdutos();
+
 }])
-.controller('CadastraProdutoCtrl', ['$scope','$stateParams','buscaCategoria','$ionicModal', function ($scope,$stateParams, buscaCategoria, $ionicModal) {	
+.controller('PesquisaEmpresaCtrl', ['$scope','buscaEmpresas','$stateParams','$ionicPopup','$rootScope', function ($scope,buscaEmpresas,$stateParams,$ionicPopup,$rootScope) {
+  
+  $scope.buscaEmpresaPorPagina = function(nomepagina) {
+   buscaEmpresas.busca(nomepagina)
+     .then(function(dados) {
+      $scope.empresas = dados;
+        })
+       .catch(function(erro) {
+        console.log(erro);
+    });
+};
+
+}])
+.controller('CadastraProdutoCtrl', ['$scope','$stateParams','buscaCategoria','$ionicModal','$rootScope','servicoProduto','$location', function ($scope,$stateParams, buscaCategoria, $ionicModal, $rootScope,servicoProduto,$location) {	
 
   $scope.produto = {};
   $scope.produto.nomeCategoria = "Selecione uma categoria";
@@ -117,27 +134,43 @@ angular.module('produto', [])
   
   $scope.setaCategoria = function(id, nome){
    
-   $scope.produto.idCategoria = id;
+   $scope.produto.categoriaproduto_id = id;
    $scope.produto.nomeCategoria = nome; 
    $scope.modal.hide();
   }
 
-   $scope.createContact = function(u) {        
+  $scope.createContact = function(u) {        
      $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
      $scope.modal.hide();
    };
 
+   $scope.cadastrarProduto = function(){   
+        $scope.produto.empresa_id = $rootScope.userIdEmpresa
+        $scope.produto.userId = $rootScope.userId;
+        servicoProduto.cadastrar($scope.produto)
+         .then(function(dados){
+            if(dados){
+            $location.path('/app/fotoproduto/'+dados.id);
+            }else{
+             $location.path('/app/produtos/9');
+            }
+         })
+         .catch(function(erro) {
+        console.log(erro);
+     });
+   }
 }])
-.controller('FotoProdutoCtrl', ['$scope','Upload','servicoFotosProduto','$ionicPopup','$ionicLoading', function ($scope,Upload,servicoFotosProduto,$ionicPopup,$ionicLoading) {
+.controller('FotoProdutoCtrl', ['$scope','Upload','servicoFotosProduto','$ionicPopup','$ionicLoading','$stateParams', function ($scope,Upload,servicoFotosProduto,$ionicPopup,$ionicLoading,$stateParams) {
  
+
+  var produtoid = $stateParams.produtoId;
+
   $scope.showConfirm = function(id) {  
     $scope.idFoto = id;
-
      var confirmPopup = $ionicPopup.confirm({
        title: 'Deletar',
        template: 'Deseja realmente excluir esta foto?'
      });
-
      confirmPopup.then(function(res) {
        if(res) {
          $scope.delete($scope.idFoto);
@@ -149,8 +182,7 @@ angular.module('produto', [])
    };
 
 $scope.BuscaFotoProduto = function (){
-
-    servicoFotosProduto.busca(18)
+    servicoFotosProduto.busca($stateParams.produtoId)
        .then(function(dados) {
         $scope.fotosproduto = dados;
           })
@@ -169,8 +201,7 @@ $scope.BuscaFotoProduto = function (){
     }
  }
 
-  $scope.upload = function(file){
-
+ $scope.upload = function(file){
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -184,7 +215,7 @@ $scope.BuscaFotoProduto = function (){
         url: 'http://107.170.54.89/fotoprodutos',
         method: 'POST',
         fields: { 
-         'fotoproduto[produto_id]': 18
+         'fotoproduto[produto_id]': produtoid
         },
         file: file,
         fileFormDataName: 'fotoproduto[image]'
@@ -197,7 +228,6 @@ $scope.BuscaFotoProduto = function (){
          console.log('progress: ' + progressPercentage + '% ' + "foto");
         });
     };
-
 
   $scope.delete = function(id){
       servicoFotosProduto.delete(id)

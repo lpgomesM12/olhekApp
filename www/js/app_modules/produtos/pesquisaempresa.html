@@ -1,0 +1,41 @@
+  <ion-view view-title="Pesquisa loja">
+   <ion-content>
+  
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" ng-model="nomepagina" placeholder="Pesquisar">
+      </label>
+      <button class="button button-positive ion-search" ng-click="buscaEmpresaPorPagina(nomepagina)">
+      </button>
+    </div>
+
+   <ion-list>
+        <ion-item collection-repeat="empresa in empresas" href="#/app/showprodutosempresa/{{empresa.id}}" class="item-button-right">
+            <p>{{empresa.nome}}</p>                                            
+        </ion-item>
+    </ion-list>
+
+
+<!-- 
+  <div class="list list-inset">
+    <label class="item item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Pesquisa">  
+    </label>
+      <button class="button button-positive button-small ion-ios-search">
+    </button>
+  </div>        
+ -->
+<!-- 
+<div class="bar bar-header item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Pesquisar">
+  </label>
+  <button class="button button-positive button-small ion-ios-search">
+  </button>
+</div>  -->
+
+  </ion-content>
+</ion-view>

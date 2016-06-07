@@ -9,6 +9,7 @@
     <div class="list">
         <a class="item item-thumbnail-left" collection-repeat="foto in fotosproduto">
           <img style="width:100px,height:100px" src="http://107.170.54.89{{foto.imagem}}">
+          <!-- <img style="width:100px,height:100px" src="http://localhost{{foto.imagem}}"> -->
           <button class="button button-assertive icon-left ion-trash-a" ng-click="showConfirm(foto.id)">Excluir</button>
         </a>            
     </div>

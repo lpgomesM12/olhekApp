@@ -4,13 +4,10 @@
            <a href="#/app/produtos/9" class="item">
                 Todas as categorias
             </a> 
-
             <div collection-repeat="categoria in categorias">
-
 	            <a ng-if="categoria.filhos" href="#/app/listaCategoria/{{categoria.id}}" class="item">
 	                 {{categoria.nome}}
 	            </a>
-                
 	            <a ng-if="!categoria.filhos" href="#/app/produtos/{{categoria.id}}" class="item">
 	                 {{categoria.nome}}
 	            </a>

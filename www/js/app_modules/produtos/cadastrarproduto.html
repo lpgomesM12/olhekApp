@@ -1,6 +1,6 @@
 <ion-view view-title="Cadastrar produto">
   <ion-content>
-<form ng-submit="logar()">
+<form ng-submit="cadastrarProduto()">
   <div class="item item-button-right" ng-click="modal.show()">
     {{produto.nomeCategoria}}
     <button class="button button-positive" ng-click="modal.show()">
@@ -8,30 +8,33 @@
     </button>
   </div>
 
+  <!-- <input type="hidden" ng-model="produto.categoriaproduto_id"" -->
+
   <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Nome produto">
+        <input type="text" ng-model="produto.nome" placeholder="Nome produto">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Titulo anúncio">
+        <input type="text" ng-model="produto.tituloanuncio" placeholder="Titulo anúncio">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Preço varejo" ui-number-mask="4">
+        <input type="text" ng-model="produto.precovarejo" placeholder="Preço varejo" ng-model="produto.precovarejo" ui-number-mask="2">
       </label>
        <label class="item item-input">
-        <input type="text" placeholder="Preço atacado" ui-number-mask="4">
+        <input type="text" ng-model="produto.precoatacado" placeholder="Preço atacado"  ng-model="produto.precoatacado" ui-number-mask="2">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Quantidade atacado">
+        <input type="text" ng-model="produto.qtd_atacado" placeholder="Quantidade atacado">
       </label>
       <label class="item item-input">
-        <textarea placeholder="Descrição detalhada"></textarea>
+        <textarea ng-model="produto.descricao" placeholder="Descrição detalhada"></textarea>
       </label>
   </div>
 
-  <a class="button button-block icon-right ion-chevron-right button-positive" href="#/app/fotoproduto">
-    Cadastro de fotos
-  </a>
+
+  <button class="button button-block icon-right ion-chevron-right button-positive">
+  Cadastro de fotos
+</button>
 
 
 <form>

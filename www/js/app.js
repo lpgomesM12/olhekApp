@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','produto','user','ngFileUpload'])
+angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','produto','user','ngFileUpload','ui.utils.masks'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','p
     })
 
     .state('app.fotoproduto', {
-      url: "/fotoproduto",
+      url: "/fotoproduto/:produtoId",
       views: {
         'menuContent': {
          templateUrl: "js/app_modules/produtos/fotoproduto.html",
@@ -97,6 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','p
     })
 
     .state('app.listaprodutosempresa', {
+     cache: false,
       url: "/listaprodutosempresa/:empresaId",
       views: {
         'menuContent': {
@@ -105,6 +106,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'categoriaProduto','p
         }
       }
     })
+
+    .state('app.pesquisaempresa', {
+      url: "/pesquisaempresa",
+      views: {
+        'menuContent': {
+         templateUrl: "js/app_modules/produtos/pesquisaempresa.html",
+          controller: 'PesquisaEmpresaCtrl'
+        }
+      }
+    })
+
 
   //daqui para baixo rotas gerada pelo ionic
 
